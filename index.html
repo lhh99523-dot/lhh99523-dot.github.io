@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>塔罗牌运势测试</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>塔罗牌运势测试</h1>
+            <button id="settingsBtn" class="settings-btn">设置</button>
+        </div>
+        <p class="description">请输入你的问题，选择牌阵，然后从三堆牌中选择一堆来获取解读</p>
+        
+        <!-- 问题输入面板 -->
+        <div id="questionPanel" class="question-panel">
+            <h3>请输入你的问题</h3>
+            <div class="setting-group">
+                <label for="question">具体问题：</label>
+                <textarea id="question" placeholder="请输入具体的问题，例如：未来3个月内我的职业发展会如何？"></textarea>
+            </div>
+            <div class="setting-group">
+                <label for="topic">占卜主题：</label>
+                <select id="topic">
+                    <option value="career">职业发展</option>
+                    <option value="relationship">感情关系</option>
+                    <option value="finance">财务状况</option>
+                    <option value="personal">个人成长</option>
+                    <option value="other">其他</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label for="timeRange">时间范围：</label>
+                <select id="timeRange">
+                    <option value="1">1个月内</option>
+                    <option value="3">3个月内</option>
+                    <option value="6">6个月内</option>
+                    <option value="12">1年内</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label for="spreadType">牌阵选择：</label>
+                <select id="spreadType">
+                    <option value="1">1张（指引）</option>
+                    <option value="3">3张（过去-现在-未来）</option>
+                    <option value="5">5张（深入分析）</option>
+                    <option value="10">10张（凯尔特十字）</option>
+                </select>
+            </div>
+            <button id="startReadingBtn">开始占卜</button>
+        </div>
+        
+        <!-- 设置面板 -->
+        <div id="settingsPanel" class="settings-panel">
+            <h3>自定义设置</h3>
+            <div class="setting-group">
+                <label for="backgroundImage">上传背景图片：</label>
+                <input type="file" id="backgroundImage" accept="image/*">
+            </div>
+            <div class="setting-group">
+                <label for="cardBackImage">上传卡片背面图片：</label>
+                <input type="file" id="cardBackImage" accept="image/*">
+            </div>
+            <div class="setting-group">
+                <label for="tarotData">导入塔罗牌数据（JSON格式）：</label>
+                <textarea id="tarotData" placeholder='[{"name":"卡牌名称","meaning":"含义","analysis":"分析"}]'></textarea>
+            </div>
+            <button id="saveSettingsBtn">保存设置</button>
+            <button id="closeSettingsBtn">关闭</button>
+        </div>
+        
+        <!-- 牌堆选择区域 -->
+        <div id="cardSelection" class="card-spread" style="display: none;">
+            <div class="card-pile" id="pile1">
+                <div class="card" data-pile="1" data-card-index="0"></div>
+                <div class="card" data-pile="1" data-card-index="1"></div>
+                <div class="card" data-pile="1" data-card-index="2"></div>
+            </div>
+            <div class="card-pile" id="pile2">
+                <div class="card" data-pile="2" data-card-index="0"></div>
+                <div class="card" data-pile="2" data-card-index="1"></div>
+                <div class="card" data-pile="2" data-card-index="2"></div>
+            </div>
+            <div class="card-pile" id="pile3">
+                <div class="card" data-pile="3" data-card-index="0"></div>
+                <div class="card" data-pile="3" data-card-index="1"></div>
+                <div class="card" data-pile="3" data-card-index="2"></div>
+            </div>
+            <div id="selectionStatus" class="selection-status">
+                已选择: <span id="selectedCount">0</span>/3 张牌
+            </div>
+            <button id="confirmSelectionBtn" class="confirm-btn" style="display: none;">确认选择</button>
+        </div>
+        
+        <div id="result" class="result">
+            <h2>结果分析</h2>
+            <div id="analysis"></div>
+            <button id="resetBtn">重新测试</button>
+        </div>
+    </div>
+    
+    <div class="stars"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

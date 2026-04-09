@@ -1,0 +1,407 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #0a0a0a;
+    color: #f0f0f0;
+    overflow: auto;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 星空背景 */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: linear-gradient(to bottom, #0a0a1a, #1a1a2e);
+}
+
+.stars::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 160px 120px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 220px 180px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 290px 230px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 360px 280px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 420px 330px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 490px 380px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 560px 430px, #fff, rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 100px 200px, #f8f, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 300px 400px, #8ff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 500px 100px, #ff8, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 500px 500px;
+    animation: twinkle 3s infinite ease-in-out;
+}
+
+/* 月亮元素 */
+.stars::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #fff 0%, #f0f0f0 70%, rgba(255,255,255,0) 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 50px rgba(255,255,255,0.5);
+    animation: moonGlow 4s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes moonGlow {
+    0%, 100% { box-shadow: 0 0 50px rgba(255,255,255,0.5); }
+    50% { box-shadow: 0 0 80px rgba(255,255,255,0.8); }
+}
+
+/* 容器 */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* 标题和描述 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.description {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #cccccc;
+}
+
+/* 设置按钮 */
+.settings-btn {
+    background-color: rgba(74, 74, 74, 0.8);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-btn:hover {
+    background-color: rgba(106, 106, 106, 0.8);
+}
+
+/* 设置面板 */
+.settings-panel {
+    display: none;
+    background-color: rgba(20, 20, 30, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.settings-panel h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.setting-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.setting-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #cccccc;
+    font-weight: bold;
+}
+
+.setting-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(40, 40, 50, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: #cccccc;
+}
+
+.setting-group textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(40, 40, 50, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: #cccccc;
+    resize: vertical;
+    min-height: 150px;
+}
+
+#saveSettingsBtn, #closeSettingsBtn, #startReadingBtn, #confirmSelectionBtn {
+    background-color: #4a4a4a;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+#saveSettingsBtn:hover, #closeSettingsBtn:hover, #startReadingBtn:hover, #confirmSelectionBtn:hover {
+    background-color: #6a6a6a;
+}
+
+/* 选择状态 */
+.selection-status {
+    text-align: center;
+    margin-top: 30px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.confirm-btn {
+    display: block;
+    margin: 20px auto;
+    font-size: 1.1rem;
+    padding: 12px 24px;
+}
+
+/* 选中的卡片样式 */
+.card.selected {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    border: 2px solid rgba(255, 215, 0, 0.8);
+}
+
+/* 问题输入面板 */
+.question-panel {
+    background-color: rgba(20, 20, 30, 0.9);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.question-panel h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.setting-group select {
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(40, 40, 50, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: #cccccc;
+    font-size: 16px;
+}
+
+/* 牌堆布局 */
+.card-spread {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 60px 0;
+    perspective: 1000px;
+}
+
+.card-pile {
+    position: relative;
+    margin: 0 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card-pile:hover {
+    transform: translateY(-10px);
+}
+
+/* 卡片样式 */
+.card {
+    width: 120px;
+    height: 180px;
+    background-color: #2c2c2c;
+    border: 2px solid #555;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    overflow: hidden;
+}
+
+/* 卡片背面样式 */
+.card-back {
+    background: linear-gradient(135deg, #3a3a3a, #1a1a1a);
+    border: 2px solid #666;
+    position: relative;
+}
+
+.card-back::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 5px;
+}
+
+.card-back::after {
+    content: 'TAROT';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(255,255,255,0.3);
+    text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+/* 卡片正面样式 */
+.card-front {
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border: 2px solid #888;
+    padding: 10px;
+    text-align: center;
+}
+
+.card-front .card-name {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.card-front .card-meaning {
+    font-size: 10px;
+    color: #ccc;
+    line-height: 1.2;
+}
+
+/* 环绕式布局 */
+.card-pile:nth-child(1) .card:nth-child(1) { transform: rotate(-15deg) translate(-20px, -10px); }
+.card-pile:nth-child(1) .card:nth-child(2) { transform: rotate(0deg); z-index: 2; }
+.card-pile:nth-child(1) .card:nth-child(3) { transform: rotate(15deg) translate(20px, -10px); }
+
+.card-pile:nth-child(2) .card:nth-child(1) { transform: rotate(-15deg) translate(-20px, -10px); }
+.card-pile:nth-child(2) .card:nth-child(2) { transform: rotate(0deg); z-index: 2; }
+.card-pile:nth-child(2) .card:nth-child(3) { transform: rotate(15deg) translate(20px, -10px); }
+
+.card-pile:nth-child(3) .card:nth-child(1) { transform: rotate(-15deg) translate(-20px, -10px); }
+.card-pile:nth-child(3) .card:nth-child(2) { transform: rotate(0deg); z-index: 2; }
+.card-pile:nth-child(3) .card:nth-child(3) { transform: rotate(15deg) translate(20px, -10px); }
+
+/* 卡片悬停效果 */
+.card:hover {
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05) !important;
+}
+
+/* 结果区域 */
+.result {
+    display: none;
+    background-color: rgba(10, 10, 10, 0.8);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.result h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+#analysis {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #e0e0e0;
+}
+
+/* 按钮样式 */
+#resetBtn {
+    background-color: #4a4a4a;
+    color: #ffffff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#resetBtn:hover {
+    background-color: #6a6a6a;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .card-spread {
+        flex-direction: column;
+        margin: 40px 0;
+    }
+    
+    .card-pile {
+        margin: 30px 0;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .card {
+        width: 100px;
+        height: 150px;
+    }
+}
